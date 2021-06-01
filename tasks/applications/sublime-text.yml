@@ -1,0 +1,5 @@
+- name: Install Sublime Text 3
+  aur:
+    name: sublime-text-3
+  become: yes
+  become_user: makepkg

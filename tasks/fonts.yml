@@ -1,0 +1,5 @@
+- name: Install system fonts
+  aur:
+    name: ttf-ms-fonts
+  become: yes
+  become_user: makepkg

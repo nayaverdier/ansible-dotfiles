@@ -1,0 +1,5 @@
+- name: Install spotify
+  aur:
+    name: spotify
+  become: yes
+  become_user: makepkg

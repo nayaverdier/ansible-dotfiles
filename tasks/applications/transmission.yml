@@ -1,0 +1,3 @@
+- name: Install transmission
+  pacman:
+    name: transmission-gtk

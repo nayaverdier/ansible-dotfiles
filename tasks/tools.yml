@@ -1,0 +1,32 @@
+- name: Install dev tools
+  pacman:
+    name:
+    - man-db
+    - groff
+    - tree
+    - nano
+    - screenfetch
+    - flameshot
+    - rsync
+    - nmap
+    - httpie
+    - jq
+    - wget
+    - curl
+    - usbutils
+    - the_silver_searcher
+    - pciutils
+    - ffmpeg
+    - imagemagick
+    - dmenu
+    - mediainfo
+    - cronie
+    - perl-image-exiftool
+    # TODO: move redis somewhere else?
+    - redis
+
+- name: Enable cronie service
+  service:
+    name: cronie
+    state: started
+    enabled: yes

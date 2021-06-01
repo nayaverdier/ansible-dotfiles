@@ -1,0 +1,22 @@
+- name: Install GTK themes
+  pacman:
+    name:
+    - adapta-gtk-theme
+    - breeze
+
+- name: Create gtk config directory
+  file:
+    path: "/home/{{ username }}/.config/gtk-3.0"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+    state: directory
+
+- name: Configure GTK themes
+  template:
+    src: files/gtk.ini
+    dest: "/home/{{ username }}/.config/gtk-3.0/settings.ini"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+

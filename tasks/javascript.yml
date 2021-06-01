@@ -1,0 +1,6 @@
+- name: Install node.js, NPM, and yarn
+  pacman:
+    name:
+    - nodejs
+    - npm
+    - yarn

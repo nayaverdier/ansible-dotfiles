@@ -1,0 +1,19 @@
+- name: Install alacritty
+  pacman:
+    name: alacritty
+
+- name: Create alacritty config directory
+  file:
+    path: "/home/{{ username }}/.config/alacritty"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+    state: directory
+
+- name: Copy alacritty config
+  template:
+    src: files/alacritty.yml
+    dest: "/home/{{ username }}/.config/alacritty/alacritty.yml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

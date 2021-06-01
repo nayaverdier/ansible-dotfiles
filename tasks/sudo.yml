@@ -1,0 +1,16 @@
+- name: Install sudo
+  pacman:
+    name:
+    - sudo
+
+- name: Copy sudoers
+  template:
+    src: files/sudoers
+    dest: /etc/sudoers
+    mode: 0440
+    validate: /usr/sbin/visudo -csf %s
+
+- name: Create sudo Group
+  group:
+    name: sudo
+

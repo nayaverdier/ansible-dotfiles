@@ -1,0 +1,19 @@
+- name: Install dunst notifications
+  pacman:
+    name: dunst
+
+- name: Create dunst config directory
+  file:
+    path: "/home/{{ username }}/.config/dunst"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+    state: directory
+
+- name: Configure dunst
+  template:
+    src: files/dunstrc
+    dest: "/home/{{ username }}/.config/dunst/dunstrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

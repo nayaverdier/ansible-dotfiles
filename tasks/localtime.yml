@@ -1,0 +1,5 @@
+- name: Set timezone to America/Los_Angeles
+  file:
+    src: /usr/share/zoneinfo/America/Los_Angeles
+    dest: /etc/localtime
+    state: link

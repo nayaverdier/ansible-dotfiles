@@ -1,0 +1,3 @@
+- name: Install SageMath
+  pacman:
+    name: sagemath

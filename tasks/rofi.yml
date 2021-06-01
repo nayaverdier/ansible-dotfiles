@@ -1,0 +1,38 @@
+- name: Install rofi
+  pacman:
+    name:
+    - rofi
+    - rofi-calc
+    - papirus-icon-theme
+
+- name: Install rofi emoji
+  aur:
+    name:
+    - rofi-emoji
+    - ttf-apple-emoji
+  become: yes
+  become_user: makepkg
+
+- name: Create rofi theme directory
+  file:
+    path: "/home/{{ username }}/.config/rofi/themes"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+    state: directory
+
+- name: Copy rofi config
+  template:
+    src: files/rofi.rasi
+    dest: "/home/{{ username }}/.config/rofi/config.rasi"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Copy rofi theme
+  copy:
+    src: files/theme/{{ theme }}/rofi
+    dest: "/home/{{ username }}/.config/rofi/themes/{{ theme }}.rasi"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

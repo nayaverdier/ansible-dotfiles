@@ -1,0 +1,23 @@
+- name: Install base-devel and git
+  pacman:
+    name:
+    - base-devel
+    - git
+
+- name: Create makepkg group
+  group:
+    name:
+      makepkg
+
+- name: Create makepkg user
+  user:
+    name: makepkg
+    groups: makepkg
+    system: yes
+
+- name: Install yay
+  aur:
+    name:
+      yay-bin
+  become: yes
+  become_user: makepkg

@@ -1,0 +1,9 @@
+- name: Install bitwarden
+  aur:
+    name:
+    - bitwarden-bin
+    - bitwarden-cli-bin
+  become: yes
+  become_user: makepkg
+
+# TODO: configure bitwarden automatically?

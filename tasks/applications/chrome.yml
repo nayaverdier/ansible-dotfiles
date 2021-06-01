@@ -1,0 +1,5 @@
+- name: Install chrome
+  aur:
+    name: google-chrome
+  become: yes
+  become_user: makepkg

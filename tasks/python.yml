@@ -1,0 +1,9 @@
+- name: Install python and packages
+  pacman:
+    name:
+    - python
+    - python-pip
+    - python-dateutil
+    - python-docutils
+    - unixodbc
+    - jedi-language-server

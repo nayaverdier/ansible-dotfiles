@@ -1,0 +1,37 @@
+- name: Install Xorg
+  pacman:
+    name:
+    - xorg-server
+    - xorg-xinit
+    - xorg-xrdb
+
+- name: Install Xorg tools
+  pacman:
+    name:
+    - xorg-xmodmap
+    - xorg-xrandr
+    - xorg-xev
+    - xorg-xset
+    - xorg-xinput
+    - "{{ kernel }}-headers"
+
+- name: Install VirtualBox Xorg driver
+  pacman:
+    name:
+    - xf86-video-vmware
+    - virtualbox-guest-utils
+    - "{{ kernel }}-headers"
+  when: model == "virtualbox"
+
+- name: Enable vboxservice
+  service:
+    name: vboxservice
+    state: started
+    enabled: yes
+  when: model == "virtualbox"
+
+- name: Install Dell XPS 7590 graphics packages
+  pacman:
+    name:
+    - xf86-video-intel
+  when: model == "dell-xps-7590"

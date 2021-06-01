@@ -1,0 +1,17 @@
+- name: Create primary user
+  user:
+    name: "{{ username }}"
+    shell: /usr/bin/zsh
+    groups: sudo
+    append: true
+    password: "{{ login_password | password_hash('sha512') }}"
+    update_password: on_create
+  when: login_password is defined
+
+- name: Create .config directory
+  file:
+    path: "/home/{{ username }}/.config"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+    state: directory
