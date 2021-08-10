@@ -3,11 +3,12 @@ let mapleader = "\<Space>"
 set nocompatible
 filetype off
 
-let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-yaml', 'coc-markdownlint', 'coc-json']
+let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-prettier', 'coc-yaml', 'coc-markdownlint', 'coc-json', 'coc-cfn-lint']
 
 call plug#begin()
 
 Plug 'ciaranm/securemodelines'
+Plug 'ap/vim-buftabline'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'justinmk/vim-sneak'
 
@@ -31,6 +32,8 @@ Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'vim-python/python-syntax'
 Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
@@ -45,10 +48,10 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr
 set inccommand=nosplit
 noremap <C-q> :confirm qall<cr>
 
-set t_Co=256
 colorscheme base16-default-dark
 syntax on
 hi Normal ctermbg=NONE
+set termguicolors
 
 let g:secure_modelines_allowed_items = [
                 \ "textwidth",   "tw",
@@ -127,12 +130,9 @@ set encoding=utf-8
 set scrolloff=2
 set noshowmode
 set hidden
-set nowrap
+set wrap
 set nojoinspaces
 set invlist
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
 set expandtab
 let g:sneak#s_next = 1
 let g:vim_markdown_new_list_item_indent = 0
@@ -143,6 +143,13 @@ set printencoding=utf-8
 set printoptions=paper:letter
 " Always draw sign column. Prevent buffer moving when adding/deleting sign.
 set signcolumn=yes
+" remove the ~ for overflowing lines
+set fillchars=eob:\ ,
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+autocmd FileType html,css,js,javascript,tsx,typescript,typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " Settings needed for .lvimrc
 set exrc
@@ -210,8 +217,7 @@ set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
 
 " Show those damn hidden characters
-" Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
-set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+set listchars=tab:\|\ ,nbsp:¬,extends:»,precedes:«,trail:•
 
 " =============================================================================
 " # Keyboard shortcuts
@@ -305,13 +311,13 @@ nmap <leader>rn <Plug>(coc-rename)
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for selections ranges.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " Find symbol of current document.
 nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
@@ -329,10 +335,6 @@ nnoremap <leader><leader> <c-^>
 
 " <leader>s shows stats
 nnoremap <leader>s g<c-g>
-
-" <leader>m for replacing up to next _
-noremap <leader>m ct_
-
 
 " =============================================================================
 " # Autocommands
