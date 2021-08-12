@@ -5,8 +5,6 @@
     - autorandr
     - xautolock
     - noto-fonts
-    - picom
-    - xclip   # TODO: move elsewhere?
     - lxappearance
     - feh
 
@@ -113,14 +111,6 @@
     owner: "{{ username }}"
     group: "{{ username}}"
     mode: 0755
-
-- name: Copy picom config
-  copy:
-    src: files/picom.conf
-    dest: "/home/{{ username }}/.config/picom.conf"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0644
 
 - name: Copy background script
   copy:

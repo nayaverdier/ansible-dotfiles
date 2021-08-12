@@ -7,8 +7,7 @@
     - zsh-completions
     - fzf
 
-# NV TODO: move to tools?
-- name: Install zsh extras (AUR)
+- name: Install font awesome
   aur:
     name: ttf-font-awesome
   become: yes

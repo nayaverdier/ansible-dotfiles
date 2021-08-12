@@ -18,6 +18,6 @@
 - name: Install yay
   aur:
     name:
-      yay-bin
+      yay
   become: yes
   become_user: makepkg

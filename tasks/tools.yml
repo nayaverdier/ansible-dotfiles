@@ -2,7 +2,7 @@
   pacman:
     name:
     - man-db
-    - groff
+    - bat
     - tree
     - nano
     - screenfetch
@@ -22,8 +22,30 @@
     - mediainfo
     - cronie
     - perl-image-exiftool
-    # TODO: move redis somewhere else?
+    - youtube-dl
+    - xclip
+    - zip
+    - unzip
+    - blueman
     - redis
+
+- name: Install dev tools (AUR)
+  aur:
+    name:
+    - duf
+    - git-delta
+    - cheat
+    - bottom
+  become: yes
+  become_user: makepkg
+
+- name: Copy cheat configuration
+  copy:
+    src: files/cheat/
+    dest: "/home/{{ username }}/.config/cheat"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
 
 - name: Enable cronie service
   service:

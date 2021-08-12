@@ -6,10 +6,10 @@ set $mod Mod1
 set $mod Mod4
 {% endif %}
 
-exec_always --no-startup-id picom -b
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id flameshot
 exec_always --no-startup-id udiskie
+exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/i3/i3autoname
 exec_always --no-startup-id setbg

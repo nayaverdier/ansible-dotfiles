@@ -1,4 +1,3 @@
-# TODO: make data in .gitconfig come from variables (name, email, and signingkey)
 - name: Copy gitignore
   copy:
     src: files/gitignore

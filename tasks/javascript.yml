@@ -4,3 +4,11 @@
     - nodejs
     - npm
     - yarn
+
+- name: Install nodejs-live-server and create-react-app
+  aur:
+    name:
+    - nodejs-live-server
+    - create-react-app
+  become: yes
+  become_user: makepkg

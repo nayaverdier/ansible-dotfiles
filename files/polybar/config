@@ -116,7 +116,6 @@ format-connected-prefix-font = 1
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip% %essid%
 
-; TODO: improve disconnected (crossed out icon?)
 format-disconnected-prefix = " "
 format-disconnected = "Disconnected"
 format-disconnected-prefix-foreground = ${colors.foreground-alt}
