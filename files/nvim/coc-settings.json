@@ -1,18 +1,20 @@
 {
-  "python.formatting.provider": "black",
   "coc.preferences.colorSupport": false,
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "python",
     "html",
-    "js",
     "javascript",
-    "tsx",
+    "javascriptreact",
     "typescript",
     "typescriptreact",
     "css",
+    "scss",
     "json"
   ],
+  "python.formatting.provider": "black",
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
   "prettier.disableLanguages": ["html"],
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",

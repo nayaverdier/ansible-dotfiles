@@ -18,6 +18,9 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" Enables <leader>gm to popup showing git blame/history
+Plug 'rhysd/git-messenger.vim'
+
 " Multiple cursors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
@@ -41,6 +44,9 @@ Plug 'junegunn/fzf.vim'
 
 " Code Completion / language server integration
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() } }
+
+" automatically close/delete brackets, parents, and quotes
+Plug 'jiangmiao/auto-pairs'
 
 " language syntax plugins
 Plug 'vim-python/python-syntax'
@@ -72,6 +78,10 @@ set guioptions-=T
 " Remove beeps
 set vb t_vb=
 
+" Always draw sign column (to left of line numbers) to avoid buffer shifting
+" when signs are added to it
+set signcolumn=yes
+
 " set color scheme and enable highlighting
 colorscheme base16-default-dark
 syntax on
@@ -90,7 +100,7 @@ set shortmess+=c
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
 " Only show color preview in web files
-let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'json']
+let g:Hexokinase_ftEnabled = ['css', 'scss', 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'json']
 
 " Modeline
 
@@ -227,7 +237,7 @@ set inccommand=nosplit
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-autocmd FileType html,css,javascript,javascriptreact,typescript,typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html,css,scss,javascript,javascriptreact,typescript,typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 
 """ Navigation

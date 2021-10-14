@@ -7,3 +7,4 @@
     - python-docutils
     - unixodbc
     - jedi-language-server
+    - python-cookiecutter

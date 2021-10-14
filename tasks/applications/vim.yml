@@ -1,6 +1,8 @@
 - name: Install neovim
   pacman:
-    name: neovim
+    name:
+    - neovim
+    - python-pynvim
 
 - name: Create neovim config directory
   file:

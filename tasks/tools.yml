@@ -13,6 +13,8 @@
     - jq
     - wget
     - curl
+    - lsof
+    - postgresql
     - usbutils
     - the_silver_searcher
     - pciutils

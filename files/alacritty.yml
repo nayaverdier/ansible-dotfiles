@@ -8,4 +8,7 @@ key_bindings:
 scrolling:
   history: 10000
 
+env:
+  TERM: xterm-256color
+
 {% include theme_dir + "alacritty" %}

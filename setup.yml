@@ -37,8 +37,6 @@
   - include: tasks/peripherals.yml
     tags: [system, peripherals]
 
-  - include: tasks/pacman.yml
-    tags: [dev, pacman]
   - include: tasks/yay.yml
     tags: [dev, yay]
   - include: tasks/tools.yml

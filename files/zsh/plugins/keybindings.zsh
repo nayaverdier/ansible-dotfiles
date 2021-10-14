@@ -15,67 +15,62 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-finish
 fi
 
-# Use emacs key bindings
-bindkey -e
+# Use vim key bindings
+bindkey -v
 
-# Start typing + [Up-Arrow] - fuzzy find history forward
+# the vim delete char doesn't allow going beyond what
+# existed before the current insert mode, this is
+# basically equivalent to setting backspace=2 in vim
+bindkey -v '^?' backward-delete-char
+
+# beginning and end of the line with Ctrl-A/E
+bindkey -v '^A' beginning-of-line
+bindkey -v '^E' end-of-line
+
+# fzf bindings
+bindkey -v '^T' fzf-file-widget
+bindkey -v '^R' fzf-history-widget
+bindkey -v '^I' fzf-completion
+
+# kill to the end of the line with Ctrl-K
+bindkey -v '^K' kill-line
+
+# fuzzy history search
 if [[ -n "${terminfo[kcuu1]}" ]]; then
   autoload -U up-line-or-beginning-search
   zle -N up-line-or-beginning-search
-
-  bindkey -M emacs "${terminfo[kcuu1]}" up-line-or-beginning-search
+  bindkey -v "${terminfo[kcuu1]}" up-line-or-beginning-search
 fi
-# Start typing + [Down-Arrow] - fuzzy find history backward
 if [[ -n "${terminfo[kcud1]}" ]]; then
   autoload -U down-line-or-beginning-search
   zle -N down-line-or-beginning-search
-
-  bindkey -M emacs "${terminfo[kcud1]}" down-line-or-beginning-search
+  bindkey -v "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
 # [Shift-Tab] - move through the completion menu backwards
 if [[ -n "${terminfo[kcbt]}" ]]; then
-  bindkey -M emacs "${terminfo[kcbt]}" reverse-menu-complete
+  bindkey -v "${terminfo[kcbt]}" reverse-menu-complete
 fi
 
 # [Backspace] - delete backward
-bindkey -M emacs '^?' backward-delete-char
+bindkey -v '^?' backward-delete-char
 # [Delete] - delete forward
 if [[ -n "${terminfo[kdch1]}" ]]; then
-  bindkey -M emacs "${terminfo[kdch1]}" delete-char
+  bindkey -v "${terminfo[kdch1]}" delete-char
 else
-  bindkey -M emacs "^[[3~" delete-char
-  bindkey -M emacs "^[3;5~" delete-char
+  bindkey -v "^[[3~" delete-char
+  bindkey -v "^[3;5~" delete-char
 fi
 
 # [Ctrl-Backspace] - delete whole backward-work
-bindkey -M emacs '^H' backward-kill-word
+bindkey -v '^H' backward-kill-word
 # [Ctrl-Delete] - delete whole forward-word
-bindkey -M emacs '^[[3;5~' kill-word
+bindkey -v '^[[3;5~' kill-word
 
 # [Ctrl-RightArrow] - move forward one word
-bindkey -M emacs '^[[1;5C' forward-word
+bindkey -v '^[[1;5C' forward-word
 # [Ctrl-LeftArrow] - move backward one word
-bindkey -M emacs '^[[1;5D' backward-word
+bindkey -v '^[[1;5D' backward-word
 
-
-bindkey '^W' kill-region                             # [Ctrl-w] - Kill from the cursor to the mark
-# bindkey '^R' history-incremental-search-backward   # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
-bindkey ' ' magic-space                              # [Space] - don't do history expansion
-
-# file rename magick
-bindkey "^[m" copy-prev-shell-word
-
-# consider emacs keybindings:
-
-#bindkey -e  ## emacs key bindings
-#
-#bindkey '^[[A' up-line-or-search
-#bindkey '^[[B' down-line-or-search
-#bindkey '^[^[[C' emacs-forward-word
-#bindkey '^[^[[D' emacs-backward-word
-#
-#bindkey -s '^X^Z' '%-^M'
-#bindkey '^[e' expand-cmd-path
-#bindkey '^[^I' reverse-menu-complete
-#bindkey '^X^N' accept-and-infer-next-history
+# don't expand history if space at the beginning
+bindkey ' ' magic-space

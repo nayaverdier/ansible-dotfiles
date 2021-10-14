@@ -3,6 +3,5 @@ function into() {
     cd $1
 }
 
-alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../../'
